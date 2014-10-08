@@ -20,7 +20,9 @@ class Factory {
         for var containerNumber = 0; containerNumber < kNumberOfContainers; ++containerNumber {
             var slotArray:[Slot] = []
             for var slotNumber = 0; slotNumber < kNumberOfSlots; ++slotNumber {
-                var slot = Slot(value: 0, image: UIImage(named: ""), isRed: true)
+
+                var slot = Factory.createSlot(slotArray)
+                
                 slotArray.append(slot)
             }
             slots.append(slotArray)
