@@ -115,12 +115,24 @@ class ViewController: UIViewController {
     
     func spinButtonPressed(button:UIButton) {
         
-        removeSlotImageViews()
+        println("Current bet:")
         
-        slots = Factory.createSlots()
-        
-        setupSecondContainer(self.secondContainer)
-        
+        if currentBet == 0 {
+            showAlertWithText(message: "Please place your Bet first.")
+        } else {
+            removeSlotImageViews()
+            
+            slots = Factory.createSlots()
+            
+            setupSecondContainer(self.secondContainer)
+            
+            var winningMutliplier = SlotBrain.computeWinnings(slots)
+            winnings = winningMutliplier * currentBet
+            credits += winnings
+            currentBet = 0
+            updateMainView()
+            
+        }
     }
     
     func setupContainerViews() {
